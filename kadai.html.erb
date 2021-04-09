@@ -23,7 +23,6 @@
     <% data_1 = [] %>
     <% result_1.each do |record| %>
       <% data_1 << "譲渡先：#{record["give_for"]}" %>
-      <% puts "#{record["give_for"]}"}%>
     <% end %>
     <form action="give_for.cgi" method="POST">
        下記のボタンを押すと、ゴーヤの譲渡先(自家消費以外)の情報ページに飛びます<br><br>
