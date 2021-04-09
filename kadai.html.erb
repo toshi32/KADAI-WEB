@@ -11,7 +11,7 @@
     <% result = connection.exec("select weight, give_for from crops;") %>
     <% data = [] %>
     <% result.each do |record| %>
-      <%  data << "ゴーヤの大きさ：#{record["weight"]}　売った相手：#{record["give_for"]}" %>
+      <%  data << "<br />ゴーヤの大きさ：#{record["weight"]}　売った相手：#{record["give_for"]}" %>
     <% end %>
     <form action="goya.cgi" method="POST">
        下記のボタンを押すと、ゴーヤの大きさと売った相手の情報ページに飛びます<br><br>
@@ -22,7 +22,7 @@
     <% result_1 = connection.exec("select give_for from crops WHERE give_for != '自家消費';") %>
     <% data_1 = [] %>
     <% result_1.each do |record| %>
-      <% data_1 << "譲渡先：#{record["give_for"]}" %>
+      <% data_1 << "<br />譲渡先：#{record["give_for"]}" %>
     <% end %>
     <form action="give_for.cgi" method="POST">
        下記のボタンを押すと、ゴーヤの譲渡先(自家消費以外)の情報ページに飛びます<br><br>
@@ -33,11 +33,11 @@
     <% result_2 = connection.exec("select quality from crops WHERE quality = false;") %>
     <% data_2 = [] %>
     <% result_2.each do |record| %>
-      <%  data_2 << "品質：#{record["quality"]}" %>
+      <%  data_2 << "<br />品質：#{record["quality"]}" %>
     <% end %>
     <form action="quality.cgi" method="POST">
        下記のボタンを押すと、ゴーヤの品質の悪い物の情報ページに飛びます<br><br>
-      <input type="text" name="quality" value="<%= data_2.join(' ') %>">
+      <input type="text" name="quality" value="<% puts data_2 %><%= data_2.join(" ") %>">
       <input type="submit" name="送信" >
     </form>
   </body>
